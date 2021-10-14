@@ -1,5 +1,4 @@
 package document;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -11,8 +10,6 @@ import java.io.InputStreamReader;
  */
 
 public class DocumentBenchmarking {
-
-	
 	public static void main(String [] args) {
 
 	    // Run each test more than once to get bigger numbers and less noise.

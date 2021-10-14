@@ -1,24 +1,20 @@
 package document;
-
-/** 
- * A class that represents a text document
- * @author UC San Diego Intermediate Programming MOOC team
- */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/** 
+ * A class that represents a text document
+ * @author UC San Diego Intermediate Programming MOOC team
+ */
 public abstract class Document {
-
 	private String text;
 	
 	/** Create a new document from the given text.
 	 * Because this class is abstract, this is used only from subclasses.
 	 * @param text The text of the document.
 	 */
-	protected Document(String text)
-	{
+	protected Document(String text){
 		this.text = text;
 	}
 	
@@ -29,8 +25,7 @@ public abstract class Document {
 	 * @return A List of tokens from the document text that match the regex 
 	 *   pattern
 	 */
-	protected List<String> getTokens(String pattern)
-	{
+	protected List<String> getTokens(String pattern) {
 		ArrayList<String> tokens = new ArrayList<String>();
 		Pattern tokSplitter = Pattern.compile(pattern);
 		Matcher m = tokSplitter.matcher(text);
@@ -62,12 +57,43 @@ public abstract class Document {
 	 *       is not considered a syllable unless the word has no other syllables. 
 	 *       You should consider y a vowel.
 	 */
-	protected int countSyllables(String word)
-	{
-		// TODO: Implement this method so that you can call it from the 
-	    // getNumSyllables method in BasicDocument (module 2) and 
-	    // EfficientDocument (module 3).
-	    return 0;
+	
+	protected int countSyllables(String word) {
+		ArrayList<Character> vowels = new ArrayList<Character>();
+		vowels.add('a'); vowels.add('e'); vowels.add('i'); vowels.add('o'); vowels.add('u'); vowels.add('y');
+		
+		char[] wordToCharArray = word.toCharArray();
+		int syllables = 0;
+		for (int i = 0; i < wordToCharArray.length; i++) {
+			// If it's only one word, it's checks for vowels, then breaks from entire loop. 
+			if (word.length() == 1) {
+				if (vowels.contains(word.charAt(0))) {
+					syllables += 1;
+				}
+				break;
+			}
+			
+			if (vowels.contains(wordToCharArray[i]) && i < wordToCharArray.length - 1) {
+				syllables += 1;
+				// Checks if the following characters are vowels, and if so, skips them.
+				while((i + 1) < wordToCharArray.length) {
+					if (vowels.contains( wordToCharArray[i + 1])) {
+						i = i + 1;
+					} else {
+						break;
+					}
+				}
+			}
+			// Checks the last character. If it's not part of another vowel (i - 1), and is not 'e', then it counts as a syllable.
+			if ((word.length() > 1) && (i == word.length() - 1) && (vowels.contains(wordToCharArray[i])) && (wordToCharArray[i] != 'e' && !vowels.contains(wordToCharArray[i - 1])) ) {
+				syllables += 1;
+			}
+			// If the last word is a vowel, and no syllables are present beforehand, it will count this vowel as a syllable. 
+			if (syllables == 0 && vowels.contains(wordToCharArray[i])) {
+				syllables += 1;
+			}
+		}
+		return syllables;
 	}
 	
 	/** A method for testing
@@ -78,8 +104,7 @@ public abstract class Document {
 	 * @param sentences The expected number of sentences
 	 * @return true if the test case passed.  False otherwise.
 	 */
-	public static boolean testCase(Document doc, int syllables, int words, int sentences)
-	{
+	public static boolean testCase(Document doc, int syllables, int words, int sentences) {
 		System.out.println("Testing text: ");
 		System.out.print(doc.getText() + "\n....");
 		boolean passed = true;
@@ -110,8 +135,7 @@ public abstract class Document {
 		}
 		return passed;
 	}
-	
-	
+
 	/** Return the number of words in this document */
 	public abstract int getNumWords();
 	
@@ -132,9 +156,8 @@ public abstract class Document {
 	{
 	    // TODO: You will play with this method in week 1, and 
 		// then implement it in week 2
-	    return 0.0;
+	    return text.length();
 	}
-	
 	
 	
 }

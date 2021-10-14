@@ -1,8 +1,6 @@
 package application;
-	
 import java.io.IOException;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -20,20 +18,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-
-
-
 public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	
-	
 	// called at start of application
 	@Override
 	public void start(Stage primaryStage) {
-		
 		this.primaryStage = primaryStage;
-		
 		this.primaryStage.setTitle("TextProApp");
 		
 		try {
@@ -52,7 +44,6 @@ public class MainApp extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		showTextProApp();
 	}
 	
@@ -75,10 +66,7 @@ public class MainApp extends Application {
             // Exception gets thrown if the fxml file could not be loaded
             e.printStackTrace();
         }
-    }
-    
-    
-    
+    } 
     // SHOW NEW STAGE METHODS
     
     /**
@@ -274,8 +262,7 @@ public class MainApp extends Application {
         loadStage.setScene(loadScene);
         loadStage.show();
     }
-    
-    
+       
     // MAIN
 	public static void main(String[] args) {
 		launch(args);
@@ -283,6 +270,5 @@ public class MainApp extends Application {
 	
 	public Stage getStage() {
 		return this.primaryStage;
-	}
-	
+	}	
 }
