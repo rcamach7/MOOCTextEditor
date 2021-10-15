@@ -59,6 +59,7 @@ public abstract class Document {
 	 */
 	
 	protected int countSyllables(String word) {
+		word = word.toLowerCase();
 		ArrayList<Character> vowels = new ArrayList<Character>();
 		vowels.add('a'); vowels.add('e'); vowels.add('i'); vowels.add('o'); vowels.add('u'); vowels.add('y');
 		
@@ -87,6 +88,7 @@ public abstract class Document {
 			// Checks the last character. If it's not part of another vowel (i - 1), and is not 'e', then it counts as a syllable.
 			if ((word.length() > 1) && (i == word.length() - 1) && (vowels.contains(wordToCharArray[i])) && (wordToCharArray[i] != 'e' && !vowels.contains(wordToCharArray[i - 1])) ) {
 				syllables += 1;
+				
 			}
 			// If the last word is a vowel, and no syllables are present beforehand, it will count this vowel as a syllable. 
 			if (syllables == 0 && vowels.contains(wordToCharArray[i])) {
@@ -152,11 +154,15 @@ public abstract class Document {
 	}
 	
 	/** return the Flesch readability score of this document */
-	public double getFleschScore()
-	{
+	public double getFleschScore() {
 	    // TODO: You will play with this method in week 1, and 
 		// then implement it in week 2
-	    return text.length();
+		
+		float div1 = 1.015f * ( (float) getNumWords() / (float) getNumSentences() ); 
+		float div2 = 84.6f * ( (float) getNumSyllables() / (float) getNumWords() );
+		float fleschScore = 206.835f - div1 - div2;
+		
+	    return fleschScore;
 	}
 	
 	
