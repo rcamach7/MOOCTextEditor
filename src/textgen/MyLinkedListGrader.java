@@ -12,15 +12,15 @@ public class MyLinkedListGrader {
 	{
 		LLNode<Integer> curr;
                 String ret = "";
-		if (lst.head.data == null)
-			curr = lst.head.next;
+		if (lst.headNode.data == null)
+			curr = lst.headNode.nextNode;
 		else
-			curr = lst.head;
+			curr = lst.headNode;
 		
 		while (curr != null && curr.data != null)
 		{
 			ret += curr.data;
-			curr = curr.next;
+			curr = curr.nextNode;
 		}
                 return ret;
 	}
@@ -28,14 +28,14 @@ public class MyLinkedListGrader {
 	public String printListBackwards(MyLinkedList<Integer> lst) {
 		LLNode<Integer> curr;
                 String ret = "";
-		if (lst.tail.data == null)
-			curr = lst.tail.prev;
+		if (lst.tailNode.data == null)
+			curr = lst.tailNode.previousNode;
 		else
-			curr = lst.tail;
+			curr = lst.tailNode;
 		while (curr != null && curr.data != null)
 		{
 		        ret += curr.data;
-			curr = curr.prev;
+			curr = curr.previousNode;
 		}
                 return ret;
 	}
