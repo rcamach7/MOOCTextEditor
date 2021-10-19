@@ -53,9 +53,9 @@ class TrieNode {
 			return null;
 		}
 		
-		TrieNode next = new TrieNode(text + c.toString());
-		children.put(c, next);
-		return next;
+		TrieNode nextNode = new TrieNode(text + c.toString());
+		children.put(c, nextNode);
+		return nextNode;
 	}
 	
 	/** Return the text string at this node */

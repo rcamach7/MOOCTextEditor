@@ -1,5 +1,4 @@
 package textgen;
-
 import java.util.Random;
 import java.util.HashMap;
 import java.io.PrintWriter;

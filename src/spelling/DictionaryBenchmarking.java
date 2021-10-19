@@ -1,6 +1,5 @@
 package spelling;
 
-
 /** A class for timing the Dictionary Implementations
  * 
  * @author UC San Diego Intermediate Programming MOOC team
@@ -8,8 +7,6 @@ package spelling;
  */
 
 public class DictionaryBenchmarking {
-
-	
 	public static void main(String [] args) {
 
 	    // Run each test more than once to get bigger numbers and less noise.
@@ -58,7 +55,7 @@ public class DictionaryBenchmarking {
 			endTime = System.nanoTime();
 			long timeBST = (endTime - startTime);
 			
-			System.out.println(numToCheck + "\t" + timeLL + "\t" + timeBST);
+			System.out.println(numToCheck + "\t" + timeLL / 1000000000f + "\t" + timeBST / 1000000000f);
 			
 		}
 	

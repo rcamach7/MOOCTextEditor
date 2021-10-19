@@ -39,7 +39,7 @@ public class DocumentBenchmarking {
 				doc.getFleschScore();
 			}
 			long endTime = System.nanoTime();
-			float result = (endTime - startTime) / 1000000000f;
+			float result = (endTime - startTime) ;
 			System.out.print(String.format("%s\t", result));
 			
 			startTime = System.nanoTime();
@@ -48,7 +48,7 @@ public class DocumentBenchmarking {
 				doc.getFleschScore();
 			}
 			endTime = System.nanoTime();
-			result = (endTime - startTime) / 1000000000f;
+			result = (endTime - startTime) ;
 			System.out.print(String.format("%s\n", result)); 
 		}
 	
